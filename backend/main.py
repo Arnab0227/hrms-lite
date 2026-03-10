@@ -16,7 +16,7 @@ app = FastAPI(title="HRMS API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # allow all origins (for development)
+    allow_origins=["https://hrms-lite-bice-ten.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
