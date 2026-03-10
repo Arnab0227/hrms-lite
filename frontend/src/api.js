@@ -42,7 +42,7 @@ export async function markAttendance(data) {
     body: JSON.stringify(payload)
   });
 
-  console.log("[v0] Response status:", res.status);
+  
   
   if (!res.ok) {
     const errorText = await res.text();
