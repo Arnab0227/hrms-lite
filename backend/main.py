@@ -8,10 +8,10 @@ import crud
 
 from database import SessionLocal, engine, Base
 
-# Create tables
+
 Base.metadata.create_all(bind=engine)
 
-# FastAPI app
+
 app = FastAPI(title="HRMS API")
 
 app.add_middleware(
@@ -21,7 +21,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# Database dependency
+
 def get_db():
     db = SessionLocal()
     try:
@@ -30,31 +30,31 @@ def get_db():
         db.close()
 
 
-# Root route
+
 @app.get("/")
 def home():
     return {"message": "HRMS API running Successfully!"}
 
 
-# Create employee
+
 @app.post("/employees", response_model=schemas.Employee)
 def create_employee(employee: schemas.EmployeeCreate, db: Session = Depends(get_db)):
     return crud.create_employee(db=db, data=employee)
 
 
-# Get all employees
+
 @app.get("/employees", response_model=list[schemas.Employee])
 def read_employees(db: Session = Depends(get_db)):
     return crud.get_employees(db)
 
 
-# Get employee by ID
+
 @app.get("/employees/{employee_id}", response_model=schemas.Employee)
 def read_employee(employee_id: int, db: Session = Depends(get_db)):
     return crud.get_employee(db, employee_id)
 
 
-# Delete employee
+
 @app.delete("/employees/{employee_id}")
 def delete_employee(employee_id: int, db: Session = Depends(get_db)):
     return crud.delete_employee(db, employee_id)
