@@ -33,7 +33,7 @@ def get_db():
 # Root route
 @app.get("/")
 def home():
-    return {"message": "HRMS API running 🚀"}
+    return {"message": "HRMS API running Successfully!"}
 
 
 # Create employee
